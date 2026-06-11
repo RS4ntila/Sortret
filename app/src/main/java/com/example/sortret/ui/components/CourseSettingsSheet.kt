@@ -94,14 +94,34 @@ fun CourseSettingsSheet(
                     unit = loc("кг", "kg"),
                     valueRange = 30f..150f
                 )
-                GlassInput(
-                    value = state.targetTotalDose,
-                    onValueChange = { state.targetTotalDose = it },
-                    modifier = Modifier.padding(top = 14.dp),
-                    label = loc("Целевая доза", "Target dose"),
-                    unit = loc("мг", "mg"),
-                    valueRange = 1000f..20000f
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(top = 14.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Bottom
+                ) {
+                    GlassInput(
+                        value = state.targetTotalDose,
+                        onValueChange = { state.targetTotalDose = it },
+                        modifier = Modifier.weight(1f),
+                        label = loc("Целевая доза", "Target dose"),
+                        unit = loc("мг", "mg"),
+                        valueRange = 1000f..30000f
+                    )
+
+                    val targetPerKg = if (state.weight > 0f) state.targetTotalDose / state.weight else 0f
+                    GlassInput(
+                        value = targetPerKg,
+                        onValueChange = { newValue ->
+                            if (state.weight > 0f) {
+                                state.targetTotalDose = newValue * state.weight
+                            }
+                        },
+                        modifier = Modifier.weight(1f),
+                        label = loc("Накопительная доза", "Target dose per kg"),
+                        unit = loc("мг/кг", "mg/kg"),
+                        valueRange = 10f..300f
+                    )
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(top = 14.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),

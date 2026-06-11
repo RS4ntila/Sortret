@@ -611,6 +611,28 @@ class TrackerState(preferences: SharedPreferences? = null) {
         glassChromaMultiplier = TrackerDefaults.GLASS_CHROMA_MULTIPLIER
     }
 
+    fun resetAllProgress() {
+        weight = TrackerDefaults.WEIGHT
+        _startDate.value = TrackerDefaults.START_DATE
+        startShift = TrackerDefaults.START_SHIFT
+        targetTotalDose = TrackerDefaults.TARGET_TOTAL_DOSE
+        tabletCount20 = TrackerDefaults.TABLET_COUNT_20
+        tabletCount10 = TrackerDefaults.TABLET_COUNT_10
+        morningTime = TrackerDefaults.MORNING_TIME
+        eveningTime = TrackerDefaults.EVENING_TIME
+        morningDoseFallback = TrackerDefaults.MORNING_DOSE
+        eveningDoseFallback = TrackerDefaults.EVENING_DOSE
+        lostCount20 = 0
+        lostCount10 = 0
+        lastObservedCumulativeDose = TrackerDefaults.LAST_OBSERVED_CUMULATIVE_DOSE
+        tabletStockSyncAt = null
+        courseSetupCompleted = false
+        
+        manualDoses.clear()
+        dosePeriods.clear()
+        dosePeriods.add(DosePeriod(TrackerDefaults.START_DATE, TrackerDefaults.MORNING_DOSE, TrackerDefaults.EVENING_DOSE))
+    }
+
     internal fun toPersistedState(): PersistedTrackerState {
         return PersistedTrackerState(
             cornerRadius = cornerRadius,

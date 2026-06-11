@@ -67,6 +67,49 @@ internal fun ResetGlassDefaultsButton(
 }
 
 @Composable
+internal fun ResetProgressButton(
+    accentColor: Color,
+    secondaryAccent: Color,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                brush = Brush.horizontalGradient(
+                    colors = listOf(
+                        Color.Red.copy(alpha = 0.15f),
+                        accentColor.copy(alpha = 0.08f)
+                    )
+                ),
+                shape = RoundedCornerShape(26.dp)
+            )
+            .softPressClick(highlightColor = Color.Red, onClick = onClick)
+            .padding(horizontal = 18.dp, vertical = 14.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = "Сбросить весь прогресс",
+            color = Color.White,
+            fontSize = 15.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.weight(1f)
+        )
+
+        Text(
+            text = "Сброс",
+            color = Color.White,
+            fontSize = 13.sp,
+            fontWeight = FontWeight.ExtraBold,
+            modifier = Modifier
+                .background(Color.Red.copy(alpha = 0.72f), RoundedCornerShape(20.dp))
+                .padding(horizontal = 14.dp, vertical = 8.dp)
+        )
+    }
+}
+
+@Composable
 internal fun GlassPreviewCard(
     state: TrackerState,
     backdrop: Backdrop,
