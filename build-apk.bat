@@ -42,8 +42,8 @@ echo.
 
 echo [2/3] Exporting APK to project root...
 if exist "app\build\outputs\apk\debug\app-debug.apk" (
-    copy "app\build\outputs\apk\debug\app-debug.apk" "sortret-v2.8.apk" > nul
-    echo [SUCCESS] APK compiled and saved as: sortret-v2.8.apk
+    copy "app\build\outputs\apk\debug\app-debug.apk" "Sortret_v2.8.apk" > nul
+    echo [SUCCESS] APK compiled and saved as: Sortret_v2.8.apk
 ) else (
     echo [ERROR] Compiled APK not found in build outputs.
     pause
@@ -55,8 +55,8 @@ echo [3/3] Installing APK to connected device (preserving data)...
 echo Checking for connected devices...
 adb devices
 echo.
-echo Installing sortret-v2.8.apk...
-adb install -r sortret-v2.8.apk
+echo Installing Sortret_v2.8.apk...
+adb install -r Sortret_v2.8.apk
 if %ERRORLEVEL% neq 0 (
     echo.
     echo [WARNING] Installation failed or no device found.

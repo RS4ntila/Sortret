@@ -862,3 +862,10 @@ fun rememberTrackerState(): TrackerState {
 
     return state
 }
+
+object Loc {
+    var isEnglish by mutableStateOf(java.util.Locale.getDefault().language != "ru")
+    fun get(ru: String, en: String): String = if (isEnglish) en else ru
+}
+
+fun loc(ru: String, en: String): String = Loc.get(ru, en)
